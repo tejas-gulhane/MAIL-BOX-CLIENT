@@ -2,17 +2,27 @@ import React ,{useState ,useRef} from 'react'
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import classes from "./Mail.module.css";
+import { useSelector ,useDispatch} from 'react-redux';
+import { mailSliceActions } from '../store/mailReducer';
+import Inbox from './Inbox';
+import Outbox from './Outbox'
 
 
-const Mail = () => { const [createMailOpen, setCreateMailOpen] = useState(false);
+
+const Mail = () => { 
+
+  const [createMailOpen, setCreateMailOpen] = useState(false);
   const [inboxOpen, setInboxOpen] = useState(true);
   const [outboxOpen, setOutboxOpen] = useState(false);
-
-
 
   const toEmailInp = useRef();
   const emailHeadingInp = useRef();
   const emailBodyInp = useRef();
+
+  const dispatch=useDispatch()
+  const mailId = useSelector( state => state.mail.mailId)
+  const sentMails = useSelector( state => state.mail.sentmails)
+
 
   const sendMailClickHandler = () => {
     const emailData = {
@@ -30,7 +40,8 @@ const Mail = () => { const [createMailOpen, setCreateMailOpen] = useState(false)
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        dispatch(mailSliceActions.saveEmailid(toEmailInp.current.value))
+        dispatch(mailSliceActions.saveSentMails(emailBodyInp.current.value))
       });
 
     // console.log(emailData);
@@ -59,7 +70,7 @@ const Mail = () => { const [createMailOpen, setCreateMailOpen] = useState(false)
   };
 
   return (
-    <div>
+    <>
       <h1>Welcome To your Mail Box</h1>
       <div className={classes.sideNav}>
         <button onClick={createMailClickHandler}>Create Email</button>
@@ -70,14 +81,14 @@ const Mail = () => { const [createMailOpen, setCreateMailOpen] = useState(false)
       </div>
 
       <div className={classes.mailBox}>
-        {createMailOpen && (
-          <Fragment>
+        {createMailOpen && 
+          <>
             <label>To: </label>
             <input ref={toEmailInp}></input>
             <br />
             <label>Heading: </label>
             <input ref={emailHeadingInp}></input>
-            <div style={{ backgroundColor: "#abbedb", height: "25vw" }}>
+            <div style={{ backgroundColor: "#fff", height: "25vw" }}>
               <Editor
                     toolbarClassName="toolbarClassName"
                     wrapperClassName="wrapperClassName"
@@ -86,12 +97,12 @@ const Mail = () => { const [createMailOpen, setCreateMailOpen] = useState(false)
               <textarea ref={emailBodyInp}></textarea>
             </div>
             <button onClick={sendMailClickHandler}>Send Mail</button>
-          </Fragment>
-        )}
-        {inboxOpen && <div>This is Inbox</div>}
+          </>
+        }
+        {inboxOpen && <Inbox/>}
         {outboxOpen && <Outbox />}
       </div>
-    </div>
+    </>
   );
 };
 
