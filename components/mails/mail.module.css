@@ -1,0 +1,20 @@
+.mailBox {
+    box-sizing: border-box;
+    width: 70vw;
+    height: 60vh;
+    background-color: rgb(170, 132, 107);
+    overflow: auto;
+    float: left;
+    margin-left: 10px;
+    border-radius: 8px;
+    padding: 5px;
+    border: 2px solid black;
+}
+.sideNav {
+    width: 20vw;
+    background-color: rgb(171, 142, 108);
+    float: left;
+}
+.sideNav button {
+    width: 100%;
+}
