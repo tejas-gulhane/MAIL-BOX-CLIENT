@@ -18,6 +18,7 @@ const createmail = () => {
     const dispatch = useDispatch();
 
     const sendMailHandler = () => {
+        
         const emailData = {
             to: toEmailInp.current.value,
             heading: emailHeadingInp.current.value,

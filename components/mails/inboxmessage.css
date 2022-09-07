@@ -1,0 +1,38 @@
+.row{
+    margin: 15px 5px 0;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border-radius: 15px ;
+
+}
+.row button {
+    margin: 12px;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    border-radius: 15px ;
+    background-color: #000;
+    color: orange;
+    font-weight: 900;
+    cursor: pointer;
+}
+.message div{
+display: flex;
+text-align: center;
+align-items: center;
+color: #000;
+}
+.message button{
+    border-radius: 50%;
+    background-color: #000;
+    color: orange;
+    border: none;
+    outline: none;
+    padding: 10px;
+    position: relative;
+    right: -95%;
+    cursor: pointer;
+}

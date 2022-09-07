@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { mailActions } from '../store/mailreducer';
 import OutboxMessage from './OutboxMessage';
+import './inboxmessage.css'
 
 const Outbox = () => {
     const allMails = useSelector(state =>state.mail.sentmail)
@@ -38,6 +39,7 @@ const Outbox = () => {
             allMails &&  Object.keys(allMails).map((item) => (
             <li key={item} id={item}>
               {<OutboxMessage 
+              id={item}
               body={allMails[item].body}
               heading={allMails[item].heading}
               to={allMails[item].to} /> }

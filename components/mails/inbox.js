@@ -14,7 +14,7 @@ const Inbox = () => {
   
     useEffect(() => {
       
-        fetch( `https://mailboxclient-b9ce0-default-rtdb.firebaseio.com/${cleanToEmail}inboxmails.json`,
+        fetch(`https://mailboxclient-b9ce0-default-rtdb.firebaseio.com/${cleanToEmail}inboxmails.json`,
           {
             method: "GET",
             headers: {
